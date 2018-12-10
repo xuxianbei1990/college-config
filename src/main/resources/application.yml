@@ -1,0 +1,7 @@
+server:
+  port: 1000
+
+#logger
+logging:
+  file: ./logs/log
+  config: classpath:logback-spring.xml
