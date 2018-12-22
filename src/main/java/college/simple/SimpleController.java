@@ -7,6 +7,7 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Name
@@ -19,6 +20,8 @@ import javax.validation.Valid;
 @RestController
 @Api("swaggerDemoController相关的api")
 public class SimpleController {
+
+    private AtomicInteger iPut = new AtomicInteger(0);
 
     @PostMapping("/test/json")
     public int test(@RequestBody @Valid SimpleDTO simpleDTO) {
@@ -40,5 +43,25 @@ public class SimpleController {
         return "This is  " + userName + "'s home...";
     }
 
+    @GetMapping("/test/exception")
+    public String testException() {
+        throw new NullPointerException("又翻车啦");
+    }
+
+    @GetMapping("/test/runtime/exception")
+    public String testRuntimeException() {
+        throw new RuntimeException("翻车军降世");
+    }
+
+    @PutMapping("/test/put")
+    public String testPut() {
+        try {
+            Thread.sleep(10);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+
+        }
+        return String.valueOf(iPut.incrementAndGet());
+    }
 
 }

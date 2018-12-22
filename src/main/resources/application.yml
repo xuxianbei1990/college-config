@@ -1,6 +1,12 @@
 server:
   port: 1000
 
+#mybatis:
+#  mapperLocations: classpath:mapper/*.xml
+#  configuration:
+#    #开启字段驼峰映射
+#    map-underscore-to-camel-case: true
+
 #logger
 logging:
   file: ./logs/log
