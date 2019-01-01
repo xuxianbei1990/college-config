@@ -10,6 +10,7 @@ package college.common.result;
  */
 public enum ReturnCodeEnum {
     SUCCESS(200, "请求成功"),
+    UNAUTHORIZED(582, "未授权"),
     FAIL(555, "请求失败");
     private int code;
     private String desc;

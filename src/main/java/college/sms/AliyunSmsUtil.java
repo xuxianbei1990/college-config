@@ -10,7 +10,7 @@ import java.util.List;
  * @author xuxb
  * Date 2018-12-10
  * VersionV1.0
- * @description
+ * @description  具体实现参考yd-crm aliyunsms
  */
 @Component
 public class AliyunSmsUtil implements ISMS {

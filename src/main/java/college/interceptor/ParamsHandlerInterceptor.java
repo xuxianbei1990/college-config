@@ -13,12 +13,12 @@ import java.util.Date;
 import java.util.Map;
 
 /**
- * Name
+ * Name 参数处理器
  *
  * @author xuxb
  * Date 2018-12-08
  * VersionV1.0
- * @description
+ * @description  参数拦截
  */
 @Slf4j
 public class ParamsHandlerInterceptor implements HandlerInterceptor {

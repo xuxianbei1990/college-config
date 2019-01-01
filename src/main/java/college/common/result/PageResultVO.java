@@ -11,6 +11,8 @@ import lombok.Data;
  * @description
  */
 @Data
+//作废；使用ResultVO 就可以实现了。
+@Deprecated
 public class PageResultVO {
     private int code = 200;
 

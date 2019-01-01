@@ -19,7 +19,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 public class ApplicationException {
 
     /**
-     * 拦截消息不可读异常
+     * 拦截未处理异常消息
      *
      * @param ex 异常实体
      * @return 指定格式的 result bean
