@@ -1,7 +1,6 @@
 package college.Filter;
 
 import college.wrapper.RepeatReadServletRequestWrapper;
-import org.springframework.stereotype.Component;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
@@ -17,7 +16,7 @@ import java.io.IOException;
  *
  *  过滤器原理
  */
-@Component
+//@Component
 public class MyFilter implements Filter {
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {

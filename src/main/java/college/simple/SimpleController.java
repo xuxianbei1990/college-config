@@ -43,6 +43,11 @@ public class SimpleController {
         return "This is  " + userName + "'s home...";
     }
 
+    @GetMapping(value = "/test", produces = "application/text;charset=utf-8")
+    public String test() {
+        return "success乱码";
+    }
+
     @GetMapping("/test/exception")
     public String testException() {
         throw new NullPointerException("又翻车啦");

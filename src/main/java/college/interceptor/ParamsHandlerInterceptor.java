@@ -1,15 +1,11 @@
 package college.interceptor;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.BufferedReader;
-import java.text.SimpleDateFormat;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.Map;
 
 /**
@@ -26,25 +22,25 @@ public class ParamsHandlerInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        if (handler instanceof HandlerMethod) {
-            StringBuilder sb = new StringBuilder("操作日志:");
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd  HH:mm:ss");
-            sb.append("-----------").append(sdf.format(new Date())).append("------------\n");
-            HandlerMethod h = (HandlerMethod) handler;
-            sb.append("Controller: ").append(h.getBean().getClass().getName()).append("\n");
-            sb.append("Method: ").append(h.getMethod().getName()).append("\n");
-            sb.append("Params: ");
-            BufferedReader bufferedReader = request.getReader();
-            String str;
-            while ((str = bufferedReader.readLine()) != null) {
-                sb.append(str);
-            }
-            sb.append(getParamString(request.getParameterMap()));
-            sb.append("\n");
-            sb.append("URL: ").append(request.getRequestURI()).append("\n");
-            sb.append("-------------------------------------------------------------------------------");
-            log.info(sb.toString());
-        }
+//        if (handler instanceof HandlerMethod) {
+//            StringBuilder sb = new StringBuilder("操作日志:");
+//            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd  HH:mm:ss");
+//            sb.append("-----------").append(sdf.format(new Date())).append("------------\n");
+//            HandlerMethod h = (HandlerMethod) handler;
+//            sb.append("Controller: ").append(h.getBean().getClass().getName()).append("\n");
+//            sb.append("Method: ").append(h.getMethod().getName()).append("\n");
+//            sb.append("Params: ");
+//            BufferedReader bufferedReader = request.getReader();
+//            String str;
+//            while ((str = bufferedReader.readLine()) != null) {
+//                sb.append(str);
+//            }
+//            sb.append(getParamString(request.getParameterMap()));
+//            sb.append("\n");
+//            sb.append("URL: ").append(request.getRequestURI()).append("\n");
+//            sb.append("-------------------------------------------------------------------------------");
+//            log.info(sb.toString());
+//        }
         return true;
     }
 

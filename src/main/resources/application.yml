@@ -1,5 +1,24 @@
 server:
   port: 1000
+  tomcat-uri-encoding: "utf-8"
+spring:
+  http:
+    encoding:
+      force: true
+      charset: utf-8
+      enabled: true
+  profiles:
+    include: db
+  data:
+    elasticsearch:
+      repositories: true
+      cluster-nodes: 192.168.2.2:9300
+      cluster-name: test-demo
+      #http://blog.joylau.cn/2019/01/16/SpringBoot-Elasticsearch-HealthCheck/
+      # 我想知道这个家伙怎么排查的。
+  elasticsearch:
+    rest:
+      uris: ["http://192.168.2.2:9200"]
 
 #mybatis:
 #  mapperLocations: classpath:mapper/*.xml
@@ -9,5 +28,5 @@ server:
 
 #logger
 logging:
-  file: ./logs/log
+  file: ./logs/config
   config: classpath:logback-spring.xml
