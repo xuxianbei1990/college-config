@@ -18,6 +18,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
  * Date 2018-12-06
  * VersionV1.0
  * @description  可以用于测试和发布api
+ * http://localhost:8080/swagger-ui.html
  */
 @Configuration
 @EnableSwagger2
