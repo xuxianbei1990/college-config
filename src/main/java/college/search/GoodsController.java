@@ -10,8 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.elasticsearch.core.query.NativeSearchQuery;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
-import org.springframework.data.elasticsearch.core.query.SearchQuery;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -25,8 +25,6 @@ import java.util.Optional;
  * Date 2019/2/19
  * VersionV1.0
  * @description
- *
- *
  */
 @RestController
 public class GoodsController {
@@ -65,12 +63,12 @@ public class GoodsController {
     @GetMapping("getGoodsList")
     public List<GoodsInfo> getList(Integer pageNumber, String query) {
         if (pageNumber == null) pageNumber = 0;
-        SearchQuery searchQuery = getEntitySearchQuery(pageNumber, PAGESIZE, query);
+        NativeSearchQuery searchQuery = getEntitySearchQuery(pageNumber, PAGESIZE, query);
         Page<GoodsInfo> goodsInfoPage = goodsRepository.search(searchQuery);
         return goodsInfoPage.getContent();
     }
 
-    private SearchQuery getEntitySearchQuery(int pageNumber, int pageSize, String searchContent) {
+    private NativeSearchQuery getEntitySearchQuery(int pageNumber, int pageSize, String searchContent) {
         MatchPhraseQueryBuilder builder = QueryBuilders.matchPhraseQuery("name", searchContent);
         WeightBuilder weightBuilder = ScoreFunctionBuilders.weightFactorFunction(100);
         FunctionScoreQueryBuilder.FilterFunctionBuilder[] filterFunctionBuilders = new FunctionScoreQueryBuilder.FilterFunctionBuilder[2];
@@ -83,7 +81,7 @@ public class GoodsController {
         functionScoreQueryBuilder.setMinScore(10);
 
         //设置分页
-        Pageable pageable = new PageRequest(pageNumber, pageSize);
+        Pageable pageable = PageRequest.of(pageNumber, pageSize);
         return new NativeSearchQueryBuilder().withPageable(pageable)
                 .withQuery(functionScoreQueryBuilder).build();
     }
